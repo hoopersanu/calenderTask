@@ -34,20 +34,6 @@ if(isset($_POST['submit'])){
 }
 
 // ===================================[fetch data from database querry]====================================
-$selectQuerry = "SELECT * from test";
-// $selectQuerry  = "SELECT id, event_name, event_date, event_time from events";
-$selectResult = mysqli_query($conn, $selectQuerry);
-
-print_r($selectResult);
-
-// while($rows = mysqli_fetch_assoc($selectResult)){
-//     print_r($rows.['id']);
-    // echo $rows.['event_name'];
-    // echo $rows.['event_date'];
-    // echo $rows.['event_time'];
-// }
-
-// workingarea
 
   
 
