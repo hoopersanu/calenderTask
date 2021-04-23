@@ -1,3 +1,6 @@
+<?php
+  include 'function.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,6 +150,31 @@ img{
 
     <div class="vertical-menu ml-3" id="showLoop"></div>
   </div>
+
+  <div class="col-xl-6 col-md-6 col-12"> 
+
+    <h1>Hello sanu</h1>
+    <?php 
+      $fetchQuery = "SELECT * FROM events";
+      $fetchData  = mysqli_query($conn, $fetchQuery);
+    
+    if ($fetchData->num_rows > 0) {
+    echo "<table  class='table table-striped'><thead><tr><th>Event Name</th><th>Event Date</th><th>Event time</th></tr></thead>";
+    
+    
+    // output data of each row
+    while($row = $fetchData->fetch_assoc()) {
+        echo "<tbody><tr><td>" . $row["event_name"]. "</td><td>" . $row["event_date"]. " </td> <td>" . $row["event_time"]. "</td></tr></tbody>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+   
+ ?>
+
+  </div>
+
 <!-- working -->
 <!-- ==============[meeting detail section start]=========== -->
 
@@ -190,6 +218,7 @@ img{
   } );
 
 
+
   function eventClick(){
     var currentDate = $( "#cal" ).datepicker( "getDate" );
     // alert(currentDate);
@@ -202,7 +231,7 @@ img{
     for (i = 0; i < 5; i++) {
       text += cardLoop;  
 
-    var cardLoop = '<p class="monthDate">Oct 4th, Sun</p> <div class="parentCard" id="card'+i+'" onclick="cardActiveBg(card'+i+')"> <div class="card" id="eventShow" style="width: 11rem; height: 3rem;text-align: left;font: normal normal normal 12px/14px Arial;letter-spacing: 0px; border-radius: unset; background-color: #843D96">  <div class="card-body items" >    <h6 class="card-title text-white">ABC Interprises</h6>    <span class="text-white">02:00</span> <span class="text-white">-</span>    <span class="text-white">06:00</span>  </div></div></div><br>';
+    var cardLoop = '<p class="monthDate"  value="">Oct 4th, Sun</p> <div class="parentCard" id="card'+i+'" onclick="cardActiveBg(card'+i+')"> <div class="card" id="eventShow" style="width: 11rem; height: 3rem;text-align: left;font: normal normal normal 12px/14px Arial;letter-spacing: 0px; border-radius: unset; background-color: #843D96">  <div class="card-body items" >    <h6 class="card-title text-white">ABC Interprises</h6>    <span class="text-white">02:00</span> <span class="text-white">-</span>    <span class="text-white">06:00</span>  </div></div></div><br>';
     }
 
     document.getElementById("showLoop").innerHTML = text;
@@ -211,6 +240,7 @@ img{
 $(document).ready(function(){
   eventClick();
 })
+
 //===============[calendar javascript function end]==================   
 
   </script>
@@ -337,6 +367,8 @@ $(function() {
 </script>
 
 <style>
+
+
 hr.new4 {
   border: 1px solid #843D96;
   /*margin-right: 1.5625rem;*/
